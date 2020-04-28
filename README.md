@@ -1,4 +1,4 @@
-# OperationBeatMe_ChessAI
+# Operation Beat Me ChessAI
 ## Overview
 The goal of this project is to build and train a reinforcement learning chess engine capable of beating my friends and myself. This is will made in collaboration of Keith Gordan and myself. The readme will catalog the progess and directly we take to achieve this result. We will explore different models such as Q learning, DQN, DDQN, Imitation learning, and many others.
 
