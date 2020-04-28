@@ -1,0 +1,6 @@
+README.md
+OBM_chessAI_v0.egg-info/PKG-INFO
+OBM_chessAI_v0.egg-info/SOURCES.txt
+OBM_chessAI_v0.egg-info/dependency_links.txt
+OBM_chessAI_v0.egg-info/requires.txt
+OBM_chessAI_v0.egg-info/top_level.txt

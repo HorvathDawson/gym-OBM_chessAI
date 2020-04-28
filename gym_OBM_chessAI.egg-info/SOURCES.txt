@@ -1,0 +1,6 @@
+README.md
+gym_OBM_chessAI.egg-info/PKG-INFO
+gym_OBM_chessAI.egg-info/SOURCES.txt
+gym_OBM_chessAI.egg-info/dependency_links.txt
+gym_OBM_chessAI.egg-info/requires.txt
+gym_OBM_chessAI.egg-info/top_level.txt

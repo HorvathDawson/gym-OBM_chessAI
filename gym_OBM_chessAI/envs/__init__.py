@@ -1,0 +1,1 @@
+from gym_OBM_chessAI.envs.OBM_chessAI_env import OBMchessEnv
