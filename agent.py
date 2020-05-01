@@ -13,11 +13,6 @@ class Chess:
 
     def _main_loop(self):
         while True:
-            for event in pygame.event.get():
-                if event.type==pygame.QUIT:
-                    # if it is quit the game
-                    pygame.quit()
-                    exit(0)
             self.env.render()
 
 
