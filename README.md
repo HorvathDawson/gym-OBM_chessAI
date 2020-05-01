@@ -8,3 +8,11 @@ Our goal is simple, by combining our passion of low tier chess with our desire t
 # The Project
 ## The chess board:
 The first thing for this project will be devleoping a Chess board that has the key gym functions for reinforcement learning and a GUI for us to interact with the enviroement. 
+## Setting up enviroment:
+### preq
+1) `pip3 install python-chess`
+2) `pip3 install pygame`
+### clone repo 
+1) `cd gym-OBM_chessAI`
+2) `pip install -e`
+2) `python3 agent.py` to run simple example agent
