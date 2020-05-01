@@ -18,8 +18,17 @@ except ImportError as e:
 
 class OBMchessEnv(gym.Env):
     metadata = {'render.modes': ['human']}
-
+    # board params
+    black = (30,30,30)
+    white = (200,200,200)
+    width, height = 640, 640
+    gridWidth = 80
     def __init__(self):
+        # pygame related stuff
+        pygame.init()
+        self.screen = pygame.display.set_mode((self.width, self.height))
+
+        #the chess board
         self.env = chess.Board()
         self.reward_lookup = {
             'check': 0.05,
@@ -49,6 +58,20 @@ class OBMchessEnv(gym.Env):
             'R': 4,
             'Q': 5,
             'K': 6
+        }
+        self.pieceImg_lookup = {
+                'b': pygame.image.load("resources/chesspieces/bishopB.png"),
+                'B': pygame.image.load("resources/chesspieces/bishopW.png"),
+                'k': pygame.image.load("resources/chesspieces/kingB.png"),
+                'K': pygame.image.load("resources/chesspieces/kingW.png"),
+                'n': pygame.image.load("resources/chesspieces/knightB.png"),
+                'N': pygame.image.load("resources/chesspieces/knightW.png"),
+                'p': pygame.image.load("resources/chesspieces/pawnB.png"),
+                'P': pygame.image.load("resources/chesspieces/pawnW.png"),
+                'q': pygame.image.load("resources/chesspieces/queenB.png"),
+                'Q': pygame.image.load("resources/chesspieces/queenW.png"),
+                'r': pygame.image.load("resources/chesspieces/rookB.png"),
+                'R': pygame.image.load("resources/chesspieces/rookW.png")
         }
 
     def step(self, action):
@@ -119,11 +142,27 @@ class OBMchessEnv(gym.Env):
         return state
 
     def render(self, mode='human', close=False):
+        # piece_map = self.env.piece_map()
+        # state = self._get_array_state(piece_map)
+        # print(self.env)
+        # print(state[0])
+        # print(state[1])
+        for boardRow in range(8):
+            for boardColumn in range(8):
+                # set background colour
+                left = boardRow * self.gridWidth
+                top  = boardColumn * self.gridWidth
+                currentColour = self.white if (boardRow + boardColumn) % 2 == 0 else self.black
+                pygame.draw.rect(self.screen,currentColour,[left,top, 80, 80])
+                # add piece if required
         piece_map = self.env.piece_map()
-        state = self._get_array_state(piece_map)
-        print(self.env)
-        print(state[0])
-        print(state[1])
+        for square, piece in piece_map.items():
+            left = int((square) % 8) * self.gridWidth + 10
+            top  = int((square) / 8) * self.gridWidth + 10
+            self.screen.blit(self.pieceImg_lookup[piece.symbol()], (left, top))
+        pygame.display.flip()
+
+
 
     def _get_legal_move_list(self):
         a = list(enumerate(self.env.legal_moves))
@@ -141,15 +180,7 @@ class OBMchessEnv(gym.Env):
         Each lower-case character is black piece, and upper case is white piece.
         :return: 8x8 numpy array.  Current player's pieces are positive integers, enemy pieces are negative.
         """
-        state = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0, 0, 0, 0]])
-
+        state = np.zeros((8,8), dtype=int)
         for square, piece in piece_map.items():
             col = int((square) / 8)
             row = int((square) % 8)
