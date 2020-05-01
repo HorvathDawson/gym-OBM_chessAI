@@ -12,23 +12,6 @@ except ImportError as e:
         "{}.  (HINT: see README for python-chess installation instructions".format(e))
 
 # """
-#     AGENT POLICY
-#     ------------
-# """
-
-# def make_random_policy(np_random):
-# 	def random_policy(state):
-# 		opp_player = -1
-# 		moves = OBMchessEnv.AllowedMoves()
-# 		# No moves left
-# 		if len(moves) == 0:
-# 			return 'resign'
-# 		else:
-# 			return np.random.choice(moves)
-# 	return random_policy
-
-
-# """
 #     CHESS GYM ENVIRONMENT CLASS
 #     ---------------------------
 # """
@@ -117,7 +100,7 @@ class OBMchessEnv(gym.Env):
     # get state info
     # -------------------------------------------
         # get current state
-        state = _get_array_state(piece_map)
+        state = self._get_array_state(piece_map)
         # check end condition
         is_terminated = self.env.is_game_over()
         info = {}
