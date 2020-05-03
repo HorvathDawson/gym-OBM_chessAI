@@ -1,5 +1,6 @@
 import gym
 import pygame
+import os
 import numpy as np
 from gym import error, spaces, utils
 from gym.utils import seeding
@@ -60,18 +61,18 @@ class OBMchessEnv(gym.Env):
             'K': 6
         }
         self.pieceImg_lookup = {
-                'b': pygame.image.load("resources/chesspieces/bishopB.png"),
-                'B': pygame.image.load("resources/chesspieces/bishopW.png"),
-                'k': pygame.image.load("resources/chesspieces/kingB.png"),
-                'K': pygame.image.load("resources/chesspieces/kingW.png"),
-                'n': pygame.image.load("resources/chesspieces/knightB.png"),
-                'N': pygame.image.load("resources/chesspieces/knightW.png"),
-                'p': pygame.image.load("resources/chesspieces/pawnB.png"),
-                'P': pygame.image.load("resources/chesspieces/pawnW.png"),
-                'q': pygame.image.load("resources/chesspieces/queenB.png"),
-                'Q': pygame.image.load("resources/chesspieces/queenW.png"),
-                'r': pygame.image.load("resources/chesspieces/rookB.png"),
-                'R': pygame.image.load("resources/chesspieces/rookW.png")
+                'b': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/bishopB.png"),
+                'B': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/bishopW.png"),
+                'k': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/kingB.png"),
+                'K': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/kingW.png"),
+                'n': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/knightB.png"),
+                'N': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/knightW.png"),
+                'p': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/pawnB.png"),
+                'P': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/pawnW.png"),
+                'q': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/queenB.png"),
+                'Q': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/queenW.png"),
+                'r': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/rookB.png"),
+                'R': pygame.image.load(os.path.dirname(__file__) + "/resources/chesspieces/rookW.png")
         }
 
     def step(self, action):
